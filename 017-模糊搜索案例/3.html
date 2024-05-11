@@ -1,0 +1,43 @@
+<!--
+ * @Author: Angelo
+ * @Date: 2024-03-20 09:45:00
+ * @version: 
+ * @Descripttion: 
+-->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    <script src="vue.js"></script>
+    <title>vue</title>
+  </head>
+  <body>
+    <div id="box">
+      <!-- 2.使用js代码的形式 -->
+      <input type="text" v-model="mytext" />
+      <ul>
+        <!-- 当test()中的数据改变就会重新构建 -->
+        <li v-for="item in test()" :key="item">{{item}}</li>
+      </ul>
+    </div>
+    <script>
+      var obj = {
+        data() {
+          return {
+            mytext: "",
+            dataList: ["aaa", "bbb", "ccc", "acccc", "alllll", "abdwod"],
+          };
+        },
+        methods: {
+          test() {
+            return this.dataList.filter((item) => item.includes(this.mytext));
+          },
+        },
+      };
+
+      var vm = Vue.createApp(obj).mount("#box");
+    </script>
+  </body>
+</html>

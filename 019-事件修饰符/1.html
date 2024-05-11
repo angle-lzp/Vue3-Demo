@@ -1,0 +1,70 @@
+<!--
+ * @Author: Angelo
+ * @Date: 2024-03-20 10:26:11
+ * @version: 
+ * @Descripttion: 
+-->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    <script src="vue.js"></script>
+    <title>vue</title>
+  </head>
+  <body>
+    <div id="box">
+      <!-- stop===evt.stopPropagation()  防止冒泡 -->
+      <!-- self：表示通过子标签冒泡上来的我不执行，只有点击我自己我才触发 -->
+      <ul @click.self="ulClick">
+        <li @click.stop="liClick">Angelo</li>
+        <li @click="liClick2">jam</li>
+        <!-- 当isFlag为false的时候后面的方法不会执行 这样的话方法需要加上（）-->
+        <li @click="isFlag && flagClick()">true-false</li>
+      </ul>
+
+      <!-- 防止默认行为 在没有使用prevent的时候会向action中的地址进行提交，但是可能在提交之前需要进行校验的这个情况；那么prevent就起到作用了，需要阻止它这个直接向action地址进行提交；-->
+      <!-- 没加prevent submitCheck会一跳而过 -->
+      <form action="" @submit.prevent="submitCheck">
+        <button type="submit">submit</button>
+      </form>
+
+      <!-- once:一次性触发 -->
+      <button @click.once="handleStar">button-star</button>
+    </div>
+    <script>
+      var obj = {
+        data() {
+          return {
+            isFlag: true,
+            count: 0,
+          };
+        },
+        methods: {
+          ulClick() {
+            console.log("ul");
+          },
+          liClick() {
+            console.log("li");
+          },
+          liClick2() {
+            console.log("li2");
+          },
+          flagClick() {
+            console.log("flagClick");
+            this.isFlag = false;
+          },
+          submitCheck() {
+            console.log("submitCheck", "校验");
+          },
+          handleStar() {
+            console.log("star-once");
+          },
+        },
+      };
+
+      var vm = Vue.createApp(obj).mount("#box");
+    </script>
+  </body>
+</html>

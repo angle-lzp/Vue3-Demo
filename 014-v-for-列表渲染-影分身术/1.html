@@ -1,0 +1,61 @@
+<!--
+ * @Author: Angelo
+ * @Date: 2024-03-19 16:23:21
+ * @version: 
+ * @Descripttion: 
+-->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    <script src="vue.js"></script>
+    <title>vue</title>
+  </head>
+  <body>
+    <div id="box">
+      <ul>
+        <!-- 1.在后续的开发中最好使用()将变量字段括起来 -->
+        <!-- <li v-for="(item,index) in dataList"> -->
+
+        <!-- 使用解构的方式将item替换 ; 也可以将of 替换 in；of===on-->
+        <li v-for="({title,status},index) of dataList">
+          {{title}}
+          <b v-if="status===0">未完成</b>
+          <b v-else-if="status===1">已完成</b>
+          <b v-else>已取消</b>
+        </li>
+      </ul>
+    </div>
+    <script>
+      // 解构的形式可以用在v-for中
+      // var item = { title, status };
+
+      //将obj进行提取出来，当作一个对象
+      var obj = {
+        data() {
+          return {
+            dataList: [
+              {
+                title: "手机",
+                status: 0,
+              },
+              {
+                title: "衣服",
+                status: 1,
+              },
+              {
+                title: "零食",
+                status: 2,
+              },
+            ],
+          };
+        },
+      };
+      methods: {
+      }
+      var vm = Vue.createApp(obj).mount("#box");
+    </script>
+  </body>
+</html>

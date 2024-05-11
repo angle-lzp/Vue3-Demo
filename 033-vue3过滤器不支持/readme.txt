@@ -1,0 +1,1 @@
+主要是vue2中{{myname|mynameMethod}}，在obj中支持filters:{}和methods同级，但是在vue3中不支持这种过滤了，但是可以在methods中写函数进行过滤也是一样的

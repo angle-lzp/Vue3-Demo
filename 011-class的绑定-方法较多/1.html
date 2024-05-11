@@ -1,0 +1,38 @@
+<!--
+ * @Author: Angelo
+ * @Date: 2024-03-19 14:22:31
+ * @version: 
+ * @Descripttion: 
+-->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    <script src="vue.js"></script>
+    <title>vue</title>
+    </style>
+  </head>
+  <body>
+    <div id="box">
+      <div :class="{aaa:true,bbb:false}">普通格式</div>
+      <div :class="classObj">对象格式</div>
+      <div :class="classArr">数组格式</div>
+    </div>
+    <script>
+      //将obj进行提取出来，当作一个对象
+      var obj = {
+        data() {
+          return {
+            classObj:{aaa:true,bbb:false},
+            //数组添加：push，删除：pop
+            classArr:["aaa","bbb"]
+          };
+        },
+        methods: {},
+      };
+      var vm = Vue.createApp(obj).mount("#box");
+    </script>
+  </body>
+</html>

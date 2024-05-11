@@ -1,0 +1,34 @@
+{
+  "news": [
+    {
+      "id": 1,
+      "author": "angelo",
+      "content": "angelo-1"
+    },
+    {
+      "id": 2,
+      "author": "angelo",
+      "content": "angelo-2"
+    },
+    {
+      "id": 3,
+      "author": "jam",
+      "content": "jam-3"
+    },
+    {
+      "id": 4,
+      "author": "jam",
+      "content": "jam-4"
+    },
+    {
+      "id": 5,
+      "author": "making",
+      "content": "making-5"
+    },
+    {
+      "id": 6,
+      "author": "making",
+      "content": "making-6"
+    }
+  ]
+}

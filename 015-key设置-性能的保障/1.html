@@ -1,0 +1,61 @@
+<!--
+ * @Author: Angelo
+ * @Date: 2024-03-19 17:33:20
+ * @version: 
+ * @Descripttion: 
+-->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    <script src="vue.js"></script>
+    <title>vue</title>
+  </head>
+  <body>
+    <div id="box">
+      <ul>
+        <!-- 
+        不使用key的情况下：虚拟dom是通过下标索引来进行对比每个节点的，这样会存在如果在中间插入元素，那么原来这个下标的元素会被覆盖，后面的元素便是新增；
+        使用key的情况：那么是根据key值来进行索引对比的，不会因为中间插入了元素，就把这个位置的元素覆盖，它也会再虚拟dom中插入这个元素；
+        这个key得是唯一性的
+         -->
+        <li v-for="({title,status,id},index) of dataList" :key="id">
+          {{title}}
+          <b v-if="status===0">未完成</b>
+          <b v-else-if="status===1">已完成</b>
+          <b v-else>已取消</b>
+        </li>
+      </ul>
+    </div>
+    <script>
+      var obj = {
+        data() {
+          return {
+            dataList: [
+              {
+                title: "手机",
+                status: 0,
+                id: 1,
+              },
+              {
+                title: "衣服",
+                status: 1,
+                id: 2,
+              },
+              {
+                title: "零食",
+                status: 2,
+                id: 3,
+              },
+            ],
+          };
+        },
+      };
+      methods: {
+      }
+      var vm = Vue.createApp(obj).mount("#box");
+    </script>
+  </body>
+</html>

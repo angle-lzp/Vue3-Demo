@@ -1,0 +1,60 @@
+<!--
+ * @Author: Angelo
+ * @Date: 2024-03-21 11:37:48
+ * @version: 
+ * @Descripttion: 
+-->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    <script src="vue.js"></script>
+    <title>vue</title>
+  </head>
+  <body>
+    <div id="box">
+      <!-- 不使用watch监听的话，平时是需要使用@input来监听输入框中的值进行了修改 -->
+      <input type="text" v-model="mytext" />
+    </div>
+    <script>
+      var obj = {
+        data() {
+          return {
+            mytext: "",
+          };
+        },
+        methods: {
+          anyfunc(value) {
+            console.log(value);
+          },
+        },
+
+        watch: {
+          // mytext方法名称同data中的mytext；表示是对mytext这个属性进行监听
+
+          //方式一：
+          // mytext(value) {
+          //   console.log(value)
+          // },
+
+          // 方式二：
+          // mytext: function (value) {
+          //   console.log(value);
+          // },
+
+          // 方式三：通过调用函数的形式
+          mytext: "anyfunc",
+
+          //对象的监听见2.html
+        },
+
+        // 使用计算属性来计算总金额
+        computed: {},
+      };
+
+      var vm = Vue.createApp(obj).mount("#box");
+    </script>
+  </body>
+</html>

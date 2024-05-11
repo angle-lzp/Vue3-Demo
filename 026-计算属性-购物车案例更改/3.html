@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    <script src="vue.js"></script>
+    <title>vue</title>
+    <style>
+      table {
+        border-collapse: collapse;
+        text-align: center;
+      }
+      tr {
+        border: 1px solid black;
+      }
+      td {
+        width: 200px;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="box">
+      <table>
+        <tr>
+          <td></td>
+          <td>序号</td>
+          <td>标题</td>
+          <td>商品</td>
+          <td>单价</td>
+          <td>数量</td>
+          <td>操作</td>
+        </tr>
+        <tr style="text-align: start">
+          <td colspan="6">
+            <input type="checkbox" v-model="allIsCheck" />全选/全不选
+          </td>
+        </tr>
+        <tr v-for="(item,index) of dataList" :key="item.id">
+          <td>
+            <input type="checkbox" v-model="goodsListCheck" :value="item.id" />
+          </td>
+          <td>{{item.id}}</td>
+          <td>{{item.title}}</td>
+          <td>
+            <img :src="item.poster" style="width: 150px" />
+          </td>
+          <td>{{item.price}}</td>
+          <td>
+            <button :disabled="item.number===1" @click="item.number--">-</button
+            >{{item.number}}<button
+              :disabled="item.number>=item.limit"
+              @click="item.number++"
+            >
+              +
+            </button>
+          </td>
+          <td><button @click="handleClickDelete(item.id)">删除</button></td>
+        </tr>
+        <tr style="text-align: start">
+          <!-- 计算的时候当商品的数量增加或者减少的时候，这个总金额也会跟着变化
+                因为在goodsListCheck中存放了商品的id，那么这整个商品的信息被更改了，便会触发调用getTotalAmount方法执行
+          -->
+          <td colspan="6">总计：{{getComputedTotalAmount}}元</td>
+        </tr>
+      </table>
+    </div>
+    <script>
+      var obj = {
+        data() {
+          return {
+            totalAmount: 0,
+            goodsListCheck: [],
+            dataList: [
+              {
+                id: 1,
+                title: "商品1",
+                price: 10,
+                number: 2,
+                poster:
+                  "https://static.maizuo.com/pc/v5/usr/movie/246eef29a307b0e85864de1c6dacac97.jpg?x-oss-process=image/quality,Q_70",
+                limit: 5,
+              },
+              {
+                id: 2,
+                title: "商品2",
+                price: 20,
+                number: 2,
+                poster:
+                  "https://static.maizuo.com/pc/v5/usr/movie/a6cb8253a0792cd00f43d558b261886c.jpg?x-oss-process=image/quality,Q_70",
+                limit: 5,
+              },
+              {
+                id: 3,
+                title: "商品3",
+                price: 30,
+                number: 2,
+                poster:
+                  "https://static.maizuo.com/pc/v5/usr/movie/b4a01139c8354e050a7a34850a64714e.jpg?x-oss-process=image/quality,Q_70",
+                limit: 5,
+              },
+              {
+                id: 4,
+                title: "商品4",
+                price: 40,
+                number: 2,
+                poster:
+                  "https://static.maizuo.com/pc/v5/usr/movie/ffe4590e2cb96c067d3876a03aeec5fd.jpg?x-oss-process=image/quality,Q_70",
+                limit: 5,
+              },
+            ],
+          };
+        },
+        methods: {
+          handleClickDelete(id) {
+            this.dataList = this.dataList.filter((item) => !(item.id === id));
+            if (this.goodsListCheck.indexOf(id) > -1) {
+              this.goodsListCheck.splice(this.goodsListCheck.indexOf(id), 1);
+            }
+            this.handleGoodsChange();
+          },
+        },
+
+        // 使用计算属性来计算总金额
+        computed: {
+          getComputedTotalAmount() {
+            var total = 0;
+            var tempDataList = this.dataList.filter((item) =>
+              this.goodsListCheck.includes(item.id)
+            );
+            tempDataList.forEach((item) => {
+              total += item.price * item.number;
+            });
+            return total;
+          },
+
+          // 使用计算属性来修改全选的功能
+          allIsCheck: {
+            get() {
+              return (
+                this.goodsListCheck.length === this.dataList.length &&
+                this.dataList.length !== 0
+              );
+            },
+            set(checked) {
+              this.goodsListCheck = checked
+                ? this.dataList.map((item) => item.id)
+                : [];
+            },
+          },
+        },
+      };
+
+      var vm = Vue.createApp(obj).mount("#box");
+    </script>
+  </body>
+</html>

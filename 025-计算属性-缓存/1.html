@@ -1,0 +1,51 @@
+<!--
+ * @Author: Angelo
+ * @Date: 2024-03-21 09:59:34
+ * @version: 
+ * @Descripttion: 
+-->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    <script src="vue.js"></script>
+    <title>vue</title>
+  </head>
+  <body>
+    <div id="box">
+      <div>{{getComputedText}}</div>
+      <div>{{getComputedText}}</div>
+      <div>{{getMethodText()}}</div>
+      <div>{{getMethodText()}}</div>
+    </div>
+    <script>
+      var obj = {
+        data() {
+          return {
+            mytext: "angelo",
+          };
+        },
+        methods: {
+          // 普通方法-没有缓存
+          getMethodText() {
+            console.log("普通方法");
+            return this.mytext.substring(0, 1) + this.mytext.substring(1);
+          },
+        },
+
+        // 计算属性-有缓存
+        // 不能在计算属性中进行异步操作，它必须立马返回，使用对象的方式(get,set)也是一样的
+        computed: {
+          getComputedText() {
+            console.log("计算属性");
+            return this.mytext.substring(0, 1) + this.mytext.substring(1);
+          },
+        },
+      };
+
+      var vm = Vue.createApp(obj).mount("#box");
+    </script>
+  </body>
+</html>

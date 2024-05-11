@@ -1,0 +1,72 @@
+<!--
+ * @Author: Angelo
+ * @Date: 2024-03-20 14:46:25
+ * @version: 
+ * @Descripttion: 
+-->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    <script src="vue.js"></script>
+    <title>vue</title>
+  </head>
+  <body>
+    <div id="box">
+      {{selected}}
+      <select v-model="selected">
+        <!-- value：里边是字符串；:value：里边是vue变量，需要字符串得加"" -->
+        <option value="all">全部</option>
+        <option :value="0">未付款</option>
+        <option :value="1">已付款</option>
+        <option :value="2">已完成</option>
+      </select>
+      <ul>
+        <template v-for="({title,status},index) of dataList">
+          <li v-if="status===selected">{{title}}</li>
+          <li v-if="selected==='all'">{{title}}</li>
+        </template>
+      </ul>
+    </div>
+    <script>
+      var obj = {
+        data() {
+          return {
+            selected: "all",
+            dataList: [
+              {
+                title: "手机-未付款",
+                status: 0,
+              },
+              {
+                title: "衣服-已付款",
+                status: 1,
+              },
+              {
+                title: "零食-已完成",
+                status: 2,
+              },
+              {
+                title: "汽车-未付款",
+                status: 0,
+              },
+              {
+                title: "美食-已付款",
+                status: 1,
+              },
+              {
+                title: "海洋-已完成",
+                status: 2,
+              },
+            ],
+          };
+        },
+      };
+      methods: {
+      }
+      var vm = Vue.createApp(obj).mount("#box");
+    </script>
+  </body>
+</html>

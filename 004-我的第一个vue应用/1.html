@@ -1,0 +1,29 @@
+<!--
+ * @Author: Angelo
+ * @Date: 2024-03-18 15:53:32
+ * @version: 
+ * @Descripttion: 
+-->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    <script src="vue.js"></script>
+    <title>vue</title>
+  </head>
+  <body>
+    <div id="box">
+      {{100 + 200 - 400 + 90}}
+      <span>{{300*100}}</span>
+    </div>
+    <div id="box2">
+        {{300/5}}
+    </div>
+    <script>
+      Vue.createApp().mount("#box");
+      Vue.createApp().mount("#box2");
+    </script>
+  </body>
+</html>

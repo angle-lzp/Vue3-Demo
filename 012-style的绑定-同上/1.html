@@ -1,0 +1,54 @@
+<!--
+ * @Author: Angelo
+ * @Date: 2024-03-19 14:59:08
+ * @version: 
+ * @Descripttion: 
+-->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    <script src="vue.js"></script>
+    <title>vue</title>
+  </head>
+  <body>
+    <div id="box">
+      <div style="background-color: red">普通格式</div>
+
+      <!-- :style 数据绑定，同v-bind -->
+      <!-- 在vue中的key不支持中线(-)的表示：可以使用双引号或者驼峰表示法 -->
+      <div :style="{backgroundColor: 'red'}">对象格式</div>
+      <div :style="{'background-color': 'red'}">对象格式</div>
+      <div :style="styleObj">对象格式</div>
+
+      <!-- 数组 -->
+      <div :style="[styleObj]">数组格式</div>
+
+      <div :style="styleArr">数组格式</div>
+      <button @click="handleClick">修改style</button>
+    </div>
+    <script>
+      //将obj进行提取出来，当作一个对象
+      var obj = {
+        data() {
+          return {
+            //style、class等属性里边的value最好都加上双引号
+            styleObj: {
+              backgroundColor: "black",
+            },
+            styleArr: [{ color: "red" }],
+          };
+        },
+        methods: {
+          handleClick() {
+            //往数组中添加数据
+            this.styleArr.push({ backgroundColor: "black" });
+          },
+        },
+      };
+      var vm = Vue.createApp(obj).mount("#box");
+    </script>
+  </body>
+</html>

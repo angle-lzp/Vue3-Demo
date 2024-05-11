@@ -1,0 +1,71 @@
+<!--
+ * @Author: Angelo
+ * @Date: 2024-03-20 10:26:11
+ * @version: 
+ * @Descripttion: 
+-->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    <script src="vue.js"></script>
+    <title>vue</title>
+  </head>
+  <body>
+    <div id="box">
+      <!-- 内联事件处理器. -->
+      <ul @click="ulClick">
+        <li @click="liClick">{{count}}</li>
+      </ul>
+      <div>
+        <!-- 表达式 -->
+        <button @click="count++">increment</button>
+        <button @click="count--">decrement</button>
+      </div>
+
+      <!-- 方法事件处理器 -->
+      <div>
+        <!-- 默认会携带event监听事件 -->
+        <button @click="handleClick">increment2</button>
+        <!-- 在携带参数的时候，需要传入监听事件对象可以使用$event -->
+        <button @click="handleClick2(1,$event)">decrement2</button>
+      </div>
+
+      <div>
+        <!-- 匿名函数 -->
+        <button @click="(evt)=>handleClick2(4,evt)">increment3</button>
+      </div>
+    </div>
+    <script>
+      var obj = {
+        data() {
+          return {
+            count: 0,
+          };
+        },
+        methods: {
+          handleClick(evt) {
+            this.count++;
+            console.log(evt);
+          },
+          handleClick2(value, evt) {
+            this.count--;
+            console.log(value, evt);
+          },
+          ulClick() {
+            console.log("ul");
+          },
+          liClick(evt) {
+            console.log("li");
+            //防止父标签冒泡，也被点击
+            evt.stopPropagation();
+          },
+        },
+      };
+
+      var vm = Vue.createApp(obj).mount("#box");
+    </script>
+  </body>
+</html>

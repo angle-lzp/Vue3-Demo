@@ -1,0 +1,33 @@
+<!--
+ * @Author: Angelo
+ * @Date: 2024-03-18 17:05:05
+ * @version: 
+ * @Descripttion: 
+-->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    <script src="vue.js"></script>
+    <title>vue</title>
+  </head>
+  <body>
+    <div id="box"></div>
+    <script>
+      var obj = {};
+    //   只能一个属性一个属性的进行赋值，太麻烦了（vue2的写法）
+      Object.defineProperty(obj, "myname", {
+        get() {
+          console.log("get")
+          return box.innerHTML
+        },
+        set(value) {
+          console.log("set");
+          box.innerHTML = value
+        },
+      });
+    </script>
+  </body>
+</html>

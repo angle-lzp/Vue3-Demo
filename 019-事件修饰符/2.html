@@ -1,0 +1,72 @@
+<!--
+ * @Author: Angelo
+ * @Date: 2024-03-19 11:04:23
+ * @version: 
+ * @Descripttion: 
+-->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    <script src="vue.js"></script>
+    <title>vue</title>
+  </head>
+  <body>
+    <div id="box">
+      <!-- 按键别名：@keyup.enter 按enter键触发；@keyup.enter.ctrl 按enter+ctrl键才触发 -->
+      <input
+        type="text"
+        v-model="mytext"
+        @input="handleInput"
+        @keyup.enter="keyHandleAdd"
+      />
+      <button @click="handleAdd">add</button>
+      <ul>
+        <li v-for="item,index in dataList">
+          {{item}}
+          <button @click="handleDelete(index)">del</button>
+        </li>
+      </ul>
+      <div v-if="dataList.length === 0">暂无数据！</div>
+    </div>
+    <script>
+      //将obj进行提取出来，当作一个对象
+      var obj = {
+        data() {
+          return {
+            mytext: "",
+            dataList: ["111", "222"],
+          };
+        },
+        methods: {
+          // 在进行监听的时候会把原生的事件给传过来
+          handleInput(evt) {
+            console.log("Luo", evt);
+            console.log("Luo", evt.target.value);
+          },
+          handleAdd() {
+            if (!(this.mytext.length === 0)) {
+              this.dataList.push(this.mytext);
+              this.mytext = "";
+            }
+          },
+          handleDelete(index) {
+            this.dataList.splice(index, 1);
+          },
+          keyHandleAdd(evt) {
+            // console.log("input", evt.target.value);
+            // console.log("keyCode", evt.keyCode);
+            // //以前写法：需要进行判断是按个按键
+            // if (evt.keyCode === 13) {
+            //   this.handleAdd();
+            // }
+            this.handleAdd();
+          },
+        },
+      };
+      var vm = Vue.createApp(obj).mount("#box");
+    </script>
+  </body>
+</html>

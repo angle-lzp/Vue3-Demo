@@ -1,0 +1,39 @@
+<!--
+ * @Author: Angelo
+ * @Date: 2024-03-19 15:54:45
+ * @version: 
+ * @Descripttion: 
+-->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    <script src="vue.js"></script>
+    <title>vue</title>
+  </head>
+  <body>
+    <div id="box">
+      <!-- 使用template的话当显示的时候，不会有template这个标签的，直接div下面就是b标签；template一般都是配合v-if来使用的 -->
+      <template v-if="isCreate">
+        <b>未完成</b>
+        <b>已完成</b>
+        <b>已取消</b>
+      </template>
+    </div>
+    <script>
+      //将obj进行提取出来，当作一个对象
+      var obj = {
+        data() {
+          return {
+            isCreate: true,
+          };
+        },
+      };
+      methods: {
+      }
+      var vm = Vue.createApp(obj).mount("#box");
+    </script>
+  </body>
+</html>

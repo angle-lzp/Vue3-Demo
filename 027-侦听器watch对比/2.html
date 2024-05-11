@@ -1,0 +1,103 @@
+<!--
+ * @Author: Angelo
+ * @Date: 2024-03-21 11:37:48
+ * @version: 
+ * @Descripttion: 
+-->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    <script src="vue.js"></script>
+    <title>vue</title>
+  </head>
+  <body>
+    <div id="box">
+      <!-- 不使用watch监听的话，平时是需要使用@input来监听输入框中的值进行了修改 -->
+      <input type="text" v-model="mytext" />
+      <select v-model="obj.year">
+        <option value="2023">2023</option>
+        <option value="2024">2024</option>
+        <option value="2025">2025</option>
+      </select>
+
+      <select v-model="obj.month">
+        <option value="11">11</option>
+        <option value="12">12</option>
+        <option value="10">10</option>
+      </select>
+
+      <select v-model="obj.day">
+        <option value="31">31</option>
+        <option value="30">30</option>
+        <option value="29">29</option>
+      </select>
+    </div>
+    <script>
+      var obj = {
+        data() {
+          return {
+            mytext: "",
+            obj: {
+              year: "2024",
+              month: "12",
+              day: "31",
+            },
+          };
+        },
+        methods: {
+          anyfunc(value) {
+            console.log(value);
+          },
+        },
+
+        watch: {
+          // mytext方法名称同data中的mytext；表示是对mytext这个属性进行监听
+
+          //方式一：
+          // mytext(value) {
+          //   console.log(value)
+          // },
+
+          // 方式二：
+          // mytext: function (value) {
+          //   console.log(value);
+          // },
+
+          // 方式三：通过调用函数的形式
+          // mytext: "anyfunc",
+
+          //对象的监听见2.html
+
+          // 对象监听
+          // 对象监听方式一：
+          // "obj.year"(value) {
+          //   console.log(value);
+          // },
+          // "obj.month"(value) {
+          //   console.log(value);
+          // },
+          // "obj.day"(value) {
+          //   console.log(value);
+          // },
+
+          // 对象监听方式二：
+          obj: {
+            handler(value) {
+              console.log(value, value.year, value.month, value.day);
+            },
+            deep: true, //复杂对象进行深层次监听，一层一层的;对象里面的任何对象都可以被监听到
+            immediate: true, //立即的；第一次展示的时候也会调用handler方法，不需要等obj改变就会首次执行
+          },
+        },
+
+        // 使用计算属性来计算总金额
+        computed: {},
+      };
+
+      var vm = Vue.createApp(obj).mount("#box");
+    </script>
+  </body>
+</html>

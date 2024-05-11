@@ -1,0 +1,48 @@
+<!--
+ * @Author: Angelo
+ * @Date: 2024-03-19 16:23:21
+ * @version: 
+ * @Descripttion: 
+-->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    <script src="vue.js"></script>
+    <title>vue</title>
+  </head>
+  <body>
+    <div id="box">
+      <ul>
+        <!-- item直接表示一个属性 -->
+        <!-- <li v-for="item of itemObj">{{item}}</li> -->
+
+        <!-- 其中value，key不言而喻应该知道什么意思 -->
+        <li v-for="(value,key) of itemObj">{{key}}---{{value}}</li>
+      </ul>
+
+      <ul>
+        <li v-for="item in 10">{{item}}</li>
+      </ul>
+    </div>
+    <script>
+      var obj = {
+        data() {
+          return {
+            itemObj: {
+              title: "书籍",
+              price: "89.0",
+              description: "未知",
+              location: "beijin",
+            },
+          };
+        },
+      };
+      methods: {
+      }
+      var vm = Vue.createApp(obj).mount("#box");
+    </script>
+  </body>
+</html>

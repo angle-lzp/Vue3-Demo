@@ -1,0 +1,44 @@
+<!--
+ * @Author: Angelo
+ * @Date: 2024-03-19 17:46:42
+ * @version: 
+ * @Descripttion: 
+-->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    <script src="vue.js"></script>
+    <title>vue</title>
+  </head>
+  <body>
+    <div id="box">
+      <ul>
+        <li v-for="item in dataList" :key="item">{{item}}</li>
+      </ul>
+      <button @click="handleClick">点击</button>
+    </div>
+    <script>
+      var obj = {
+        data() {
+          return {
+            dataList: ["aaa", "bbb", "ccc"],
+          };
+        },
+        methods: {
+          handleClick() {
+            //过滤
+            // this.dataList = this.dataList.map((item) => "angelo" + item);
+
+            //数组组合
+            this.dataList = this.dataList.concat(["333","555"])
+          },
+        },
+      };
+
+      var vm = Vue.createApp(obj).mount("#box");
+    </script>
+  </body>
+</html>

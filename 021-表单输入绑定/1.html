@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    <script src="vue.js"></script>
+    <title>vue</title>
+  </head>
+  <body>
+    <div id="box">
+      <!-- 1.富文本 -->
+      <div>
+        {{textareaText}}
+        <textarea v-model="textareaText"></textarea>
+      </div>
+      <!-- 2.登入记住密码：只有一个直接true/false -->
+      <div>
+        {{isCheck}}
+        <input type="text" placeholder="输入用户名" />
+        <input type="checkbox" v-model="isCheck" />记住用户名
+      </div>
+
+      <h2>个人爱好/兴趣</h2>
+      <!-- 3.多选：多个存放的是value值得数组 -->
+      <div>
+        {{favList}}
+        <input type="checkbox" v-model="favList" value="篮球" />篮球
+        <input type="checkbox" v-model="favList" value="足球" />足球
+        <input type="checkbox" v-model="favList" value="乒乓球" />乒乓球
+      </div>
+
+      <!-- 4.下拉选项 -->
+      <div>
+        <!-- 没有value值取option中的数据 -->
+        {{selected}}
+        <select v-model="selected">
+          <option>游泳</option>
+          <option>田径</option>
+          <option>铅球</option>
+          <option>手枪</option>
+        </select>
+      </div>
+
+      <div>
+        <!-- 有value值取value值 -->
+        {{selected2}}
+        <select v-model="selected2">
+          <option value="1">游泳</option>
+          <option value="2">田径</option>
+          <option value="3">铅球</option>
+          <option value="4">手枪</option>
+        </select>
+      </div>
+    </div>
+    <script>
+      var obj = {
+        data() {
+          return {
+            textareaText: "",
+            isCheck: false,
+            favList: [],
+            selected: "",
+            selected2: "",
+          };
+        },
+        methods: {},
+      };
+      var vm = Vue.createApp(obj).mount("#box");
+    </script>
+  </body>
+</html>

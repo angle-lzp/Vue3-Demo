@@ -1,0 +1,51 @@
+<!--
+ * @Author: Angelo
+ * @Date: 2024-03-19 13:51:46
+ * @version: 
+ * @Descripttion: 
+-->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    <script src="vue.js"></script>
+    <title>vue</title>
+    <style>
+      .active {
+        background-color: red;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="box">
+      <ul>
+        <li
+          v-for="item,index in dataList"
+          :class="current===index?'active':''"
+          @click="handleClick(index)"
+        >
+          {{item}}
+        </li>
+      </ul>
+    </div>
+    <script>
+      //将obj进行提取出来，当作一个对象
+      var obj = {
+        data() {
+          return {
+            dataList: ["angelo", "jam", "tom"],
+            current: 0,
+          };
+        },
+        methods: {
+          handleClick(index) {
+            this.current = index;
+          },
+        },
+      };
+      var vm = Vue.createApp(obj).mount("#box");
+    </script>
+  </body>
+</html>

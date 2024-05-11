@@ -1,0 +1,74 @@
+<!--
+ * @Author: Angelo
+ * @Date: 2024-03-19 10:12:40
+ * @version: 
+ * @Descripttion: 
+-->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    <script src="vue.js"></script>
+    <title>vue</title>
+    <style>
+      .hidden {
+        display: none;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="box">
+      {{myname}}
+      <!-- 老版的点击事件需要配合js中得function -->
+      <button onclick="handleClick()">click</button>
+      <!-- 使用vue得方式 -->
+      <!-- <button v-on:click="handleClick2()">click2</button> -->
+
+      <!-- v-on:click的方式和@click的方式是一样的 -->
+      <!-- @click的形式方法后面加（）不加都是可以的；加（）有利于传参,不加的话会把原生 监听事件给传过来 -->
+      <button @click="handleClick2()">click2</button>
+
+      <div :class="isShow?'':'hidden'">我出现了</div>
+
+      <!-- v-show：使用vue提供的显示隐藏的功能 -->
+      <div v-show="isShow">我是显示或隐藏！</div>
+
+      <!-- v-if：创建和删除，删除时直接把这个div删除掉了 -->
+      <div v-if="isShow">我是创建或删除！</div>
+
+      <!-- v-for：for循环 -->
+      <ul>
+        <li v-for="item,index in list">{{item}}---{{index}}</li>
+      </ul>
+    </div>
+    <script>
+      function handleClick() {
+        console.log("click");
+        vm.myname = "jam";
+      }
+      //将obj进行提取出来，当作一个对象
+      var obj = {
+        data() {
+          return {
+            myname: "angelo",
+            isShow: false,
+            list: ["one", "two", "three"],
+          };
+        },
+        methods: {
+          handleClick2() {
+            console.log("click2", this);
+            //此时的this就是下面的vm；所以vm.myname等同于this.myname
+            // 主要是因为这个button是在id为box的div中，所以this就表示这个vm
+            this.myname = "other";
+            this.isShow = !this.isShow;
+          },
+        },
+      };
+
+      var vm = Vue.createApp(obj).mount("#box");
+    </script>
+  </body>
+</html>

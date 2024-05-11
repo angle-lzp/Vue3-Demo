@@ -1,0 +1,62 @@
+<!--
+ * @Author: Angelo
+ * @Date: 2024-03-21 14:06:03
+ * @version: 
+ * @Descripttion: 
+-->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    <script src="vue.js"></script>
+    <title>vue</title>
+    <style>
+      li {
+        overflow: hidden;
+        padding: 10px;
+      }
+      li img {
+        width: 100px;
+        float: left;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="box">
+      <button @click="handleClick">点我</button>
+      <ul>
+        <li v-for="item in dataList">
+          <img :src="item.poster" alt="" />
+          <div>名称：{{item.name}}</div>
+          <div>观众评分：{{item.grade}}</div>
+          <div>
+            主演：<span v-for="n of item.actors">{{n.name}}&nbsp;</span>
+          </div>
+          <div>{{item.nation}}|{{item.runtime}}分钟</div>
+        </li>
+      </ul>
+    </div>
+    <script>
+      var obj = {
+        data() {
+          return {
+            dataList: [],
+          };
+        },
+        methods: {
+          handleClick() {
+            fetch("./test.json")
+              .then((res) => res.json())
+              .then((res) => {
+                console.log(res);
+                this.dataList = res.films;
+              });
+          },
+        },
+      };
+      var vm = Vue.createApp(obj).mount("#box");
+    </script>
+  </body>
+</html>

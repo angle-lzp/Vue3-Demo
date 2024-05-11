@@ -1,0 +1,64 @@
+<!--
+ * @Author: Angelo
+ * @Date: 2024-03-18 17:38:20
+ * @version: 
+ * @Descripttion: 
+-->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    <script src="vue.js"></script>
+    <title>vue</title>
+  </head>
+  <body>
+    <style>
+      .red {
+        background-color: red;
+      }
+      .yellow {
+        background-color: yellow;
+      }
+    </style>
+    <div id="box">
+      <!-- 变量名 -->
+      {{myname}}
+
+      <!-- 算术运算 -->
+      {{200 + 300}} {{ifFlas?"对":"错"}}
+
+      <!-- 字符串拼接；三目运算符 -->
+
+      <div v-bind:class="className">cccc</div>
+      <!-- v-bind 和 : 都是一样的效果的;进行动态绑定 -->
+      <div :class="ifFlas?'red':'yellow'">cccc</div>
+      <img :src="url" alt="" width="200dp">
+      <!-- 绑定多个标签属性:v-bind -->
+      <img v-bind=imgDetail>
+      <!-- 和使用v-bind是一样的 -->
+      <button :disabled="isDisabled">click</button>
+    </div>
+    <script>
+      //将obj进行提取出来，当作一个对象
+      var obj = {
+        data() {
+          return {
+            myname: "angelo",
+            ifFlas: false,
+            className: "red",
+            url:"https://static.maizuo.com/pc/v5/usr/movie/246eef29a307b0e85864de1c6dacac97.jpg?x-oss-process=image/quality,Q_70",
+            isDisabled:true,
+            imgDetail:{
+              src:"https://static.maizuo.com/pc/v5/usr/movie/246eef29a307b0e85864de1c6dacac97.jpg?x-oss-process=image/quality,Q_70",
+              with:"300dp"
+            }
+          };
+        },
+      };
+      // vm.myname="steven" 可以在console中进行值得设置
+      var vm = Vue.createApp(obj).mount("#box");
+    </script>
+  </body>
+</html>

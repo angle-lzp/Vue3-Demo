@@ -1,0 +1,109 @@
+<!--
+ * @Author: Angelo
+ * @Date: 2024-03-21 14:06:03
+ * @version: 
+ * @Descripttion: 
+-->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    <script src="vue.js"></script>
+    <title>vue</title>
+  </head>
+  <body>
+    <div id="box">
+      <button @click="handleClick">点我</button>
+    </div>
+    <script>
+      var obj = {
+        data() {
+          return {};
+        },
+        methods: {
+          handleClick() {
+            // get-写法一：把返回的结果转成json格式
+            // fetch("./test.json")
+            //   .then((res) => res.json())
+            //   .then((res) => {
+            //     this.dataList = res.list;
+            //   });
+
+            // get-写法二：使用text()的方式，在不知道是json格式的情况下
+            // fetch("./test.json")
+            //   .then((res) => res.text())
+            //   .then((res) => {
+            //     console.log(res);
+            //     this.dataList = JSON.parse(res).list;
+            //   });
+
+            // 使用json-server服务的接口，需要安装node.js
+            // 1.查询-get
+            fetch("http://localhost:3000/list")
+              .then((res) => res.json())
+              .then((res) => {
+                console.log(res);
+              });
+
+            // 2.插入-post-表单方式
+            fetch("http://localhost:3000/list", {
+              method: "post",
+              headers: {
+                "content-type": "application/x-www-form-urlencoded",
+              },
+              body: "name=angelo&age=19", //请求体中的数据
+            })
+              .then((res) => res.json()) //返回插入成功后的数据
+              .then((res) => {
+                console.log(res);
+              });
+
+            // 2.插入-post-json方式
+            fetch("http://localhost:3000/list", {
+              method: "post",
+              headers: {
+                "content-type": "application/json",
+              },
+              body: JSON.stringify({
+                name: "angelo",
+                age: "78",
+              }), //请求体中的数据
+            })
+              .then((res) => res.json()) //返回插入成功后的数据
+              .then((res) => {
+                console.log(res);
+              });
+
+            // 3.修改-put-通过id进行修改
+            fetch("http://localhost:3000/list/5", {
+              method: "put",
+              headers: {
+                "content-type": "application/json",
+              },
+              body: JSON.stringify({
+                name: "angelo3",
+                age: "783",
+              }), //请求体中的数据
+            })
+              .then((res) => res.json()) //返回插入成功后的数据
+              .then((res) => {
+                console.log(res);
+              });
+
+            // 4.删除-通过id进行删除
+            fetch("http://localhost:3000/list/5", {
+              method: "delete",
+            })
+              .then((res) => res.json()) //返回插入成功后的数据
+              .then((res) => {
+                console.log(res);
+              });
+          },
+        },
+      };
+      var vm = Vue.createApp(obj).mount("#box");
+    </script>
+  </body>
+</html>

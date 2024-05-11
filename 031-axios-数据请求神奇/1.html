@@ -1,0 +1,115 @@
+<!--
+ * @Author: Angelo
+ * @Date: 2024-03-21 14:06:03
+ * @version: 
+ * @Descripttion: 
+-->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    <script src="vue.js"></script>
+    <script src="axios.js"></script>
+    <title>vue</title>
+    <style>
+      li {
+        overflow: hidden;
+        padding: 10px;
+      }
+      li img {
+        width: 100px;
+        float: left;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="box">
+      <button @click="handleClick">点我</button>
+    </div>
+    <script>
+      var obj = {
+        data() {
+          return {
+            dataList: [],
+          };
+        },
+        methods: {
+          // 使用json-server中的接口
+          handleClick() {
+            //1.get（因为json-server的缘故，接口是list，所以数据是直接返回list的数组[]）
+            axios
+              .get("http://localhost:3000/list")
+              .then((res) => {
+                //数据的获取需要通过.data一下，才会获取到原始的数据
+                console.log(res.data);
+                this.dataList = res.data;
+              })
+              .catch((err) => {
+                console.log(err);
+              });
+
+            // post-json(默认content-type类型就是json格式（application/json）)
+            axios
+              .post("http://localhost:3000/list", {
+                name: "tom",
+                age: 66,
+              })
+              .then((res) => {
+                //数据的获取需要通过.data一下，才会获取到原始的数据
+                console.log(res.data);
+              })
+              .catch((err) => {
+                console.log(err);
+              });
+
+            // post-form(表单格式)
+            axios
+              .post("http://localhost:3000/list", "name=tom&age=54")
+              .then((res) => {
+                //数据的获取需要通过.data一下，才会获取到原始的数据
+                console.log(res.data);
+              })
+              .catch((err) => {
+                console.log(err);
+              });
+
+            // put(通过id修改)
+            axios
+              .put("http://localhost:3000/list/3", "name=tom&age=54")
+              .then((res) => {
+                //数据的获取需要通过.data一下，才会获取到原始的数据
+                console.log(res.data);
+              })
+              .catch((err) => {
+                console.log(err);
+              });
+
+            // delete(通过id删除)
+            axios
+              .delete("http://localhost:3000/list/3")
+              .then((res) => {
+                //数据的获取需要通过.data一下，才会获取到原始的数据
+                console.log(res.data);
+              })
+              .catch((err) => {
+                console.log(err);
+              });
+
+            // 完整版
+            axios({
+              header: {},
+              method: "delete",
+              url: "http://localhost:3000/list/3",
+              data: {},
+            }).then((res) => {
+              console.log(res.data);
+            });
+          },
+        },
+      };
+      var vm = Vue.createApp(obj).mount("#box");
+    </script>
+  </body>
+</html>
