@@ -13,6 +13,7 @@
 
 
         <!-- <Field label="用户名" :value="myvalue" @myevent="handleEvent"/> -->
+         
         <Field label="用户名" v-model:kerwin="myvalue" />
         <!-- 上面这行代码的源码如下： 在组件Field中props中：kerwin，emit中：update:kerwin-->
         <!-- <Field label=".." :kerwin="myvalue" @update:kerwin=""/> -->

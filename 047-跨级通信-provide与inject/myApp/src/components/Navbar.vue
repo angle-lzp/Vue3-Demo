@@ -1,7 +1,13 @@
+<!--
+ * @Author: Angelo
+ * @Date: 2024-03-25 09:10:41
+ * @version: 
+ * @Descripttion: 
+-->
 <template>
     <div>
         <button>返回</button>
-        <span>{{ navTitle }}</span>
+        <span>{{ app.navtitle }}</span>
         <button>首页</button>
     </div>
 </template>

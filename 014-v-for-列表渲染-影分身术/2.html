@@ -16,8 +16,8 @@
   <body>
     <div id="box">
       <ul>
-        <!-- item直接表示一个属性 -->
-        <!-- <li v-for="item of itemObj">{{item}}</li> -->
+        <!-- item直接表示一个属性，只会把value给打印出来 -->
+        <li v-for="item of itemObj">{{item}}</li>
 
         <!-- 其中value，key不言而喻应该知道什么意思 -->
         <li v-for="(value,key) of itemObj">{{key}}---{{value}}</li>

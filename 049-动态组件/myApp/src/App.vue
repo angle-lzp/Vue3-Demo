@@ -16,7 +16,7 @@
     <!-- keep-alive：可以使组件里边的数据可以缓存
       include：只缓存谁
       exclude：不缓存谁 用法同上
-      上面两个都需要给组件取别名:需要再各自的组件中name:list取别名，不然缓存数据无效（缓存的是这个组件里边的数据，比如你输入了什么数据切换之后数据还在）
+      上面两个都需要给组件取别名:需要在各自的组件中name:list取别名，不然缓存数据无效（缓存的是这个组件里边的数据，比如你输入了什么数据切换之后数据还在）
     -->
     <keep-alive include="index,list">
       <component :is="componentName"></component>

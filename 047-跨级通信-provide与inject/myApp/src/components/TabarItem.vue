@@ -10,7 +10,9 @@ export default {
     inject: ["navTitle", "app"],
     methods: {
         handleClick() {
-            this.app.navTitle = this.item
+            console.log(this.item, this.navTitle);
+            this.app.navtitle = this.item
+            this.navTitle = this.item
             console.log(this.app.navtitle);
         }
     }

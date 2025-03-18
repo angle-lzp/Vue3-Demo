@@ -15,9 +15,10 @@ export default {
         //parent:父组件
         //root：根组件不一定是爷爷组件
         handeClick(){
-            console.log(this.$parent.title)
-            console.log(this.$parent.$parent.title)
-            console.log(this.$root.title)
+            console.log(this.$parent.title) //Bparent-11111
+            console.log(this.$parent.$parent.title) //Aparent-11111
+            console.log(this.$parent.$parent.$parent.title)   //app-11111
+            console.log(this.$root.title)   //app-11111
         }
     }
 }

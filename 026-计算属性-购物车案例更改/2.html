@@ -33,6 +33,7 @@
         // 计算属性两个表达方式
         computed: {
           //计算属性-对象的方式：可读可写
+          //在浏览器的console中输入：vm.getComputedObjectMyName = "2024-3-21"，可以看到结果
           getComputedObjectMyName: {
             get() {
               return this.year + "-" + this.mothed + "-" + this.day;
@@ -44,6 +45,7 @@
           },
 
           // 计算属性-方法的方式：只读，不能修改；
+          //在浏览器的console中输入：vm.getComputedMyName = "city"，发现页面中的值没有变化
           getComputedMyName() {
             return this.myname.toUpperCase();
           },

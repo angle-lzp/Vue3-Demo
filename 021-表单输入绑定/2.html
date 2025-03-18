@@ -17,7 +17,10 @@
     <div id="box">
       {{selected}}
       <select v-model="selected">
-        <!-- value：里边是字符串；:value：里边是vue变量，需要字符串得加"" -->
+        <!-- value：里边是字符串；:value：里边是vue变量，需要字符串得加"",例如：:value="'0'"
+              :value="0" 中的0是数字，不是字符串；需要字符串得：:value="'0'" 
+              value="0" 中的0是字符串
+        -->
         <option value="all">全部</option>
         <option :value="0">未付款</option>
         <option :value="1">已付款</option>

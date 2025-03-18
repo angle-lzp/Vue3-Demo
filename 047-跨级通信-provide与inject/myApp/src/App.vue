@@ -20,9 +20,12 @@ export default {
       navtitle: "首页"
     }
   },
+  // provide和inject是一对，provide提供数据，inject接收数据
+  // navTitle: 是字符串，在其他的组件中进行更改，不会影响到当前的组件中的数据
+  // app: 是当前的组件，可以在其他的组件中进行其属性进行更改，那么在其他地方使用app的属性的时候，会发生变化
   provide() {
     return {
-      navTitle: this.navTitle,
+      navTitle: this.navtitle,
       app: this
     }
   },

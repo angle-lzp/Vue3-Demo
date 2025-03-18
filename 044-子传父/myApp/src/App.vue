@@ -8,7 +8,8 @@
   <div>
     app
     <!-- once:事件修饰符,这个事件只执行一次 -->
-    <Child @event.once="handleEvent($event)" @event2="handleEvent2" />
+     <!-- 子传父的这个@eventtting是可以随便写变量的 -->
+    <Child @event.once="handleEvent($event)" @eventtting="handleEvent2" />
   </div>
 </template>
 <script>

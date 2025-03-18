@@ -8,7 +8,10 @@
     <div>
         child
         <!-- <button @click="handleClick">click</button> -->
-        <button @click="$emit('event',childtitle)">click</button>
+         <!-- eventtting是在App.vue中@eventtting中的这个名称
+            @click="handleClick"同理 
+         -->
+        <button @click="$emit('eventtting',childtitle)">click</button>
     </div>
 </template>
 <script>

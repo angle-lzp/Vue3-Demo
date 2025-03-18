@@ -19,7 +19,7 @@
         <!-- 1.在后续的开发中最好使用()将变量字段括起来 -->
         <!-- <li v-for="(item,index) in dataList"> -->
 
-        <!-- 使用解构的方式将item替换 ; 也可以将of 替换 in；of===on-->
+        <!-- 使用解构的方式将item替换 ; 也可以将of 替换 in；of===in-->
         <li v-for="({title,status},index) of dataList">
           {{title}}
           <b v-if="status===0">未完成</b>
