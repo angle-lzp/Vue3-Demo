@@ -6,6 +6,7 @@
       <!-- slot加上名字，下面可修改成 -->
       <!-- 直接通过解构的方式获取到myValue的值 ，因为props是一个对象的形式，通过解构的方式，里边是对象的名称就可以获取这个对象的值了-->
       <!-- <template v-slot:movie="{myValue}"></template> -->
+       <!-- 首次加载使用的是Child中的布局，当在input中进行操作的时候才会变成在App的<li><div></div></li>布局 -->
       <template v-slot:movie="props">
         <ul>
           <li>{{ props.a }}</li> <!-- 读取a值 -->

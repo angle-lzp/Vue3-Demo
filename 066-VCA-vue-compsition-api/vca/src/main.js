@@ -5,7 +5,7 @@
  * @Descripttion:
  */
 import { createApp } from "vue";
-// import App from "./11-setup语法糖/demo/App.vue";
 import App from "./11-setup语法糖/demo/App.vue";
+// import App from "./10-生命周期/App.vue";
 
 createApp(App).mount("#app");

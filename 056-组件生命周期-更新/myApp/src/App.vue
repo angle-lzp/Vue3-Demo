@@ -67,6 +67,7 @@ export default {
         handleClick() {
             this.mywidth = '800px'
             //   跟在哪个最近状态的变化的下面就，触发下面的方法
+            // 只有在mywidth变化的时候才会触发下面this.myChart.resize()方法进行重新设置大小
             this.$nextTick(() => {
                 console.log("nexttick")
                 this.myChart.resize()

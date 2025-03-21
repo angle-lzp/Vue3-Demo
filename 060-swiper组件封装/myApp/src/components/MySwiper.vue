@@ -1,3 +1,9 @@
+<!--
+ * @Author: Angelo
+ * @Date: 2024-03-26 11:53:50
+ * @version: 
+ * @Descripttion: 
+-->
 <template>
     <div class="swiper">
         <div class="swiper-wrapper">
@@ -53,7 +59,7 @@ export default {
                 prevEl: ".swiper-button-prev",
             },
             on: {
-                //使用箭头的方式，才表示这个this和mounted的this时同一个this，不然表示的时new Swiper()这个this
+                //使用箭头的方式，才表示这个this和mounted的this是同一个this，不然表示的是new Swiper()这个this
                 slideChange: () => {
                     console.log("数据改变", mySwiper.activeIndex);
                     this.$emit("ListenSlideChange", mySwiper.activeIndex);

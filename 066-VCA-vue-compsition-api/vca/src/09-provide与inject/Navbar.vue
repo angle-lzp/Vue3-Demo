@@ -16,6 +16,7 @@ import { inject } from "vue"
 export default {
     props: ["title"],
     setup() {
+        // 注意通过inject获取的属性，在进行设置值的时候，需要通过.value来进行设置
         const which = inject("which")
         const handleBackClick = () => {
             which.value = "List"

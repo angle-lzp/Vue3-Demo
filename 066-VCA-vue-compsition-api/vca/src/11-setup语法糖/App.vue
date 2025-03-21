@@ -16,7 +16,7 @@
     </div>
 </template>
 <script setup>
-import { computed, reactive, ref, toRefs } from 'vue';
+import { computed, reactive, ref, toRefs, provide } from 'vue';
 import Child from './Child.vue';//直接导入直接用
 
 const myname = ref("angelo")
@@ -34,5 +34,7 @@ const computedTitle = computed(() => myname.value.substring(0, 1).toUpperCase() 
 const defineEmitOper = (value) => {
     console.log("emit", "defineEmitOper", value);
 }
+
+provide("myname", myname)
 
 </script>

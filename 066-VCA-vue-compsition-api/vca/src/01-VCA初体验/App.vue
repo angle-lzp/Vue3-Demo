@@ -9,6 +9,7 @@
 import { reactive } from "vue";
 export default {
     setup() {
+        //reactive:响应式
         const obj = reactive({
             userName: "angelo",
             password: "123456"

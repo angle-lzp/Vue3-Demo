@@ -8,11 +8,11 @@
     <div class="tabbar">
         <!-- 路由方式一： -->
         <!-- 这种方式把href写死了，现在是hash路由的方式可以，但是换成其他的方式就不可以了； -->
-        <!-- <ul> -->
-        <!-- <li><a href="#/films">电影</a></li>
+        <!-- <ul>
+        <li><a href="#/films">电影</a></li>
             <li><a href="#/cinemas">影院</a></li>
-            <li><a href="#/center">我的</a></li> -->
-        <!-- </ul> -->
+            <li><a href="#/center">我的</a></li>
+        </ul> -->
 
         <!-- 路由方式二： router-link的方式；其实底层也是使用的a标签来操作的-->
         <!-- <ul>

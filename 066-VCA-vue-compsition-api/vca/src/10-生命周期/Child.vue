@@ -18,7 +18,7 @@ export default {
 
         })
         onUnmounted(() => {
-            //必须在卸载之后停止定时任务，不然的话定时任务会一致执行
+            //必须在卸载之后停止定时任务，不然的话定时任务会一直执行
             clearInterval(clearId)
         })
     }

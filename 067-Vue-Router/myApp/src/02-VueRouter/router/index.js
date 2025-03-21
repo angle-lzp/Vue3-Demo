@@ -33,7 +33,7 @@ const routes = [
         component: ComingSoon,
       },
       {
-        path: "/films",
+        path: "/films", //当路径为/films的时候，重定向到/films/nowPlaying（相当于默认加载的页面）
         redirect: "/films/nowPlaying",
       },
     ],

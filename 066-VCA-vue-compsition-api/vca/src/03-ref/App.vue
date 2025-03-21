@@ -17,8 +17,10 @@
 import { ref } from "vue"
 export default {
     setup() {
+        // 只有ref("")这种方式在js中进行取值赋值的时候才需要.value
+        // reactive是不需要的，直接取值就可以
         // 可以包装普通属性
-        const obj = ref("angelo") //等价于：new Proxy({value:"angelo"})
+        const obj = ref("angelo") //等价于：new Proxy({value:"angelo"})=>obj.value才是实际的值
         const userName = ref(null)
         const handleClick = () => {
             obj.value = "steven"

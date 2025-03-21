@@ -2,7 +2,7 @@
  * @Author: Angelo
  * @Date: 2024-03-28 09:33:17
  * @version: 
- * @Descripttion: 
+ * @Descripttion: 计算属性
 -->
 <template>
     <div>
@@ -20,6 +20,8 @@ export default {
         const obj = reactive({
             myname: "angelo"
         })
+        //计算属性
+        //当myname改变的时候，myNameComputed也会改变
         const myNameComputed = computed(() => {
             return obj.myname.substring(0, 1).toUpperCase() + obj.myname.substring(1);
         })
